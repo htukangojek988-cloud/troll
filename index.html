@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roblox Unlimited Robux</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;background:linear-gradient(180deg,#071029,#021018);color:#e6f2ff;display:flex;align-items:center;justify-content:center;height:100vh}
+    .card{width:96%;max-width:760px;padding:26px;border-radius:14px;background:rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(2,6,23,0.6)}
+    h1{margin:0 0 8px;font-size:1.7rem;color:#06b6d4}
+    p{margin:0 0 14px;color:#cfe3ff}
+    .meta{font-size:0.9rem;color:#9fb7d9;margin-bottom:16px}
+    .progress{height:12px;background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg,#06b6d4,#3b82f6);transition:width 0.3s ease}
+    small{display:block;margin-top:10px;color:#9fb7d9}
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <h1>Roblox Unlimited Robux</h1>
+    <p class="meta">Memindai sistem dan menyiapkan link download. Proses akan selesai dalam beberapa detik...</p>
+
+    <div class="progress" aria-hidden="true">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <small id="hint">Halaman ini akan mengarahkan kamu ke aplikasi YouTube setelah proses selesai.</small>
+  </div>
+
+  <script>
+    // ID video Rickroll
+    const videoId = "dQw4w9WgXcQ";
+    const appUrl = `https://b.top4top.io/m_36040z4sm0.mp4`;
+    const webUrl = `https://youtu.be/xvFZjo5PgG0?si=wsshleRt3khdOnFt`;
+
+    const DURATION = 7000; // 7 detik
+    const STEP = 100;
+    let elapsed = 0;
+    const bar = document.getElementById('bar');
+    const hint = document.getElementById('hint');
+
+    let timer = setInterval(() => {
+      elapsed += STEP;
+      const pct = Math.min(100, Math.round((elapsed / DURATION) * 100));
+      bar.style.width = pct + '%';
+
+      if (elapsed >= DURATION) {
+        clearInterval(timer);
+        hint.textContent = 'Mengalihkan ke aplikasi YouTube...';
+
+        // Coba buka aplikasi YouTube
+        window.location.href = appUrl;
+
+        // Fallback: jika tidak ada aplikasi, tetap buka via web
+        setTimeout(() => {
+          window.location.href = webUrl;
+        }, 800);
+      }
+    }, STEP);
+  </script>
+</body>
+</html>
