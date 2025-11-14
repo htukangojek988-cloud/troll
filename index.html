@@ -5,40 +5,117 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Roblox Unlimited Robux</title>
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;background:linear-gradient(180deg,#071029,#021018);color:#e6f2ff;display:flex;align-items:center;justify-content:center;height:100vh}
-    .card{width:96%;max-width:760px;padding:26px;border-radius:14px;background:rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(2,6,23,0.6)}
-    h1{margin:0 0 8px;font-size:1.7rem;color:#06b6d4}
-    p{margin:0 0 14px;color:#cfe3ff}
-    .meta{font-size:0.9rem;color:#9fb7d9;margin-bottom:16px}
-    .progress{height:12px;background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden}
-    .bar{height:100%;width:0%;background:linear-gradient(90deg,#06b6d4,#3b82f6);transition:width 0.3s ease}
-    small{display:block;margin-top:10px;color:#9fb7d9}
-    video{width:100%;border-radius:12px;margin-top:18px;display:none}
+    body{
+      margin:0;
+      font-family:Arial;
+      background:#0d1423;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+    .card{
+      width:90%;
+      max-width:600px;
+      background:#141d33;
+      padding:20px;
+      border-radius:12px;
+    }
+    .progress{
+      width:100%;
+      height:12px;
+      background:#263045;
+      border-radius:8px;
+      overflow:hidden;
+      margin-top:15px;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,#06b6d4,#3b82f6);
+    }
+    video{
+      width:100%;
+      margin-top:15px;
+      border-radius:10px;
+      display:none;
+    }
     button{
       display:none;
       margin-top:12px;
-      padding:10px 16px;
-      background:#06b6d4;
+      padding:12px;
       border:none;
       border-radius:8px;
+      background:#06b6d4;
       color:white;
+      font-weight:bold;
       font-size:1rem;
-      font-weight:600;
-      cursor:pointer;
     }
   </style>
 </head>
 <body>
-  <div class="card" role="main">
-    <h1>Roblox Unlimited Robux</h1>
-    <p class="meta">Memindai sistem dan menyiapkan link download. Proses akan selesai dalam beberapa detik...</p>
 
-    <div class="progress">
-      <div class="bar" id="bar"></div>
-    </div>
+<div class="card">
+  <h2>Roblox Unlimited Robux</h2>
+  <p id="hint">Memindai sistem...</p>
 
-    <small id="hint">Memuat...</small>
+  <div class="progress">
+    <div id="bar" class="bar"></div>
+  </div>
 
-    <!-- Video autoplay (so
+  <video id="autoVid" playsinline>
+    <source src="http://b.top4top.io/m_36040z4sm0.mp4" type="video/mp4">
+  </video>
+
+  <button id="playBtn">Putar Video Dengan Suara</button>
+</div>
+
+<script>
+  const bar = document.getElementById("bar");
+  const hint = document.getElementById("hint");
+  const video = document.getElementById("autoVid");
+  const playBtn = document.getElementById("playBtn");
+
+  const DURATION = 7000;
+  const STEP = 100;
+
+  let elapsed = 0;
+
+  // 🔥 Loading Progress Bar
+  const timer = setInterval(() => {
+    elapsed += STEP;
+
+    let pct = Math.round((elapsed / DURATION) * 100);
+    if(pct > 100) pct = 100;
+
+    bar.style.width = pct + "%";
+
+    if (elapsed >= DURATION) {
+      clearInterval(timer);
+
+      hint.textContent = "Memutar video...";
+
+      // Tampilkan video
+      video.style.display = "block";
+      video.muted = false;
+
+      // Coba autoplay
+      video.play().catch(() => {
+        // Jika gagal (karena tidak ada gesture)
+        hint.textContent = "Tekan tombol untuk memutar video dengan suara.";
+        playBtn.style.display = "block";
+      });
+    }
+  }, STEP);
+
+  // 🔘 Tombol fallback
+  playBtn.onclick = () => {
+    playBtn.style.display = "none";
+    video.play();
+    hint.textContent = "Memutar video...";
+  };
+</script>
+
+</body>
+</html>
