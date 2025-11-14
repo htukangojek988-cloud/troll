@@ -52,7 +52,7 @@
 
       if (elapsed >= DURATION) {
         clearInterval(timer);
-        hint.textContent = 'Mengalihkan ke Mediafire...';
+        hint.textContent = 'Mengalihkan ke MediaFire...';
 
         window.location.href = appUrl;
 
@@ -65,30 +65,3 @@
 </body>
 </html>
 
-    const DURATION = 7000; // 7 detik
-    const STEP = 100;
-    let elapsed = 0;
-    const bar = document.getElementById('bar');
-    const hint = document.getElementById('hint');
-
-    let timer = setInterval(() => {
-      elapsed += STEP;
-      const pct = Math.min(100, Math.round((elapsed / DURATION) * 100));
-      bar.style.width = pct + '%';
-
-      if (elapsed >= DURATION) {
-        clearInterval(timer);
-        hint.textContent = 'Mengalihkan ke aplikasi YouTube...';
-
-        // Coba buka aplikasi YouTube
-        window.location.href = appUrl;
-
-        // Fallback: jika tidak ada aplikasi, tetap buka via web
-        setTimeout(() => {
-          window.location.href = webUrl;
-        }, 800);
-      }
-    }, STEP);
-  </script>
-</body>
-</html>
