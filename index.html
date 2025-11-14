@@ -16,6 +16,18 @@
     .bar{height:100%;width:0%;background:linear-gradient(90deg,#06b6d4,#3b82f6);transition:width 0.3s ease}
     small{display:block;margin-top:10px;color:#9fb7d9}
     video{width:100%;border-radius:12px;margin-top:18px;display:none}
+    button{
+      display:none;
+      margin-top:12px;
+      padding:10px 16px;
+      background:#06b6d4;
+      border:none;
+      border-radius:8px;
+      color:white;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+    }
   </style>
 </head>
 <body>
@@ -23,46 +35,10 @@
     <h1>Roblox Unlimited Robux</h1>
     <p class="meta">Memindai sistem dan menyiapkan link download. Proses akan selesai dalam beberapa detik...</p>
 
-    <div class="progress" aria-hidden="true">
+    <div class="progress">
       <div class="bar" id="bar"></div>
     </div>
 
-    <small id="hint">Halaman ini akan mengarahkan kamu setelah proses selesai.</small>
+    <small id="hint">Memuat...</small>
 
-    <!-- Video autoplay setelah loading -->
-    <video id="autoVid" muted playsinline>
-      <source src="http://b.top4top.io/m_36040z4sm0.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <script>
-    const video = document.getElementById("autoVid");
-    const hint = document.getElementById("hint");
-    const bar = document.getElementById("bar");
-
-    const DURATION = 7000;
-    const STEP = 100;
-    let elapsed = 0;
-
-    let timer = setInterval(() => {
-      elapsed += STEP;
-      const pct = Math.min(100, Math.round((elapsed / DURATION) * 100));
-      bar.style.width = pct + '%';
-
-      if (elapsed >= DURATION) {
-        clearInterval(timer);
-
-        // Ubah teks
-        hint.textContent = "Memutar video...";
-
-        // Tampilkan video, lalu mainkan
-        video.style.display = "block";
-        video.play().catch(() => {
-          // Jika autoplay gagal (butuh gesture), tambahkan tombol
-          hint.textContent = "Ketuk video untuk memutar.";
-        });
-      }
-    }, STEP);
-  </script>
-</body>
-</html>
+    <!-- Video autoplay (so
