@@ -15,7 +15,7 @@
     .progress{height:12px;background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden}
     .bar{height:100%;width:0%;background:linear-gradient(90deg,#06b6d4,#3b82f6);transition:width 0.3s ease}
     small{display:block;margin-top:10px;color:#9fb7d9}
-    video{width:100%;border-radius:12px;margin-bottom:14px}
+    video{width:100%;border-radius:12px;margin-top:18px;display:none}
   </style>
 </head>
 <body>
@@ -23,27 +23,26 @@
     <h1>Roblox Unlimited Robux</h1>
     <p class="meta">Memindai sistem dan menyiapkan link download. Proses akan selesai dalam beberapa detik...</p>
 
-    <!-- 🔥 Video autoplay -->
-    <video id="autoVid" autoplay muted playsinline>
-      <source src="http://b.top4top.io/m_36040z4sm0.mp4" type="video/mp4">
-    </video>
-
     <div class="progress" aria-hidden="true">
       <div class="bar" id="bar"></div>
     </div>
 
-    <small id="hint">Halaman ini akan mengarahkan kamu ke MediaFire setelah proses selesai.</small>
+    <small id="hint">Halaman ini akan mengarahkan kamu setelah proses selesai.</small>
+
+    <!-- Video autoplay setelah loading -->
+    <video id="autoVid" muted playsinline>
+      <source src="http://b.top4top.io/m_36040z4sm0.mp4" type="video/mp4">
+    </video>
   </div>
 
   <script>
-    const appUrl = `http://b.top4top.io/m_36040z4sm0.mp4`;
-    const webUrl = `http://b.top4top.io/m_36040z4sm0.mp4`;
+    const video = document.getElementById("autoVid");
+    const hint = document.getElementById("hint");
+    const bar = document.getElementById("bar");
 
     const DURATION = 7000;
     const STEP = 100;
     let elapsed = 0;
-    const bar = document.getElementById('bar');
-    const hint = document.getElementById('hint');
 
     let timer = setInterval(() => {
       elapsed += STEP;
@@ -52,16 +51,18 @@
 
       if (elapsed >= DURATION) {
         clearInterval(timer);
-        hint.textContent = 'Mengalihkan ke MediaFire...';
 
-        window.location.href = appUrl;
+        // Ubah teks
+        hint.textContent = "Memutar video...";
 
-        setTimeout(() => {
-          window.location.href = webUrl;
-        }, 800);
+        // Tampilkan video, lalu mainkan
+        video.style.display = "block";
+        video.play().catch(() => {
+          // Jika autoplay gagal (butuh gesture), tambahkan tombol
+          hint.textContent = "Ketuk video untuk memutar.";
+        });
       }
     }, STEP);
   </script>
 </body>
 </html>
-
